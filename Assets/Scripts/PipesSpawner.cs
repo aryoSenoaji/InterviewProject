@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PipesSpawner : MonoBehaviour
 {
-    public GameObject prefab;
     public float spawnRate = 1f;
     public float minHeight = -1f;
     public float maxHeight = 2f;
@@ -21,7 +20,7 @@ public class PipesSpawner : MonoBehaviour
 
     private void Spawn()
     {
-        GameObject pipes = Instantiate(prefab, transform.position, Quaternion.identity);
-        pipes.transform.position += Vector3.up * Random.Range(minHeight, maxHeight);
+        GameObject pipes = PipePool.Instance.GetFromPool();
+        pipes.transform.position = transform.position + Vector3.up * Random.Range(minHeight, maxHeight);
     }
 }
